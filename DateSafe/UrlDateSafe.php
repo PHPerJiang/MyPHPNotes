@@ -1,27 +1,27 @@
 <?php
-header('content-type:text/html;charset=gbk');
+header('content-type:text/html;charset=utf-8');
 if (!empty($_GET['code'])){
     echo urldecode($_GET['code']).'<hr/><br/>';
 }elseif(!empty($_GET['code1'])){
     echo urldecode($_GET['code1']).'<hr/><br>';
 }
 $url='& #';
-$test=urlencode($url);      //urlencode»á°Ñ¿Õ×Å×ª»»Îª+
+$test=urlencode($url);      //ä¼šæŠŠç©ºæ ¼è½¬æ¢ä¸º+
 echo urlencode($url).'<hr/>';
 echo urldecode($url).'<hr/>';
-echo "<a href='UrlDateSafe.php?code={$test}'>²âÊÔ</a><hr/><br/><br/>";
+echo "<a href='UrlDateSafe.php?code={$test}'>æµ‹è¯•</a><hr/><br/><br/>";
 
 $url1='& #';
 $test=urlencode($url1);
 echo $url.'<hr/>';
-echo rawurlencode($url).'<hr/>';//rawurlencode»á°Ñ¿Õ¸ñ×ª»»Îª%20£¬ÕâÊÇÓëurlencodeÇø±ğ£¬ÆäÓàµÄ¶¼Ò»Ñù
+echo rawurlencode($url).'<hr/>';//rawurlencodeä¼šæŠŠç©ºæ ¼è½¬æ¢ä¸º%20
 echo rawurldecode($url).'<hr/>';
-echo "<a href='UrlDateSafe.php?code1={$test}'>²âÊÔ</a><hr/>";
+echo "<a href='UrlDateSafe.php?code1={$test}'>æµ‹è¯•</a><hr/>";
 
 /**
-*  £¿            =>  %3F
+*  ï¼Ÿ            =>  %3F
 *  =    =>  %3d
-*  ¿Õ¸ñ       =>  +(urlencode) / %20(rawurlencode)
+*  ç©ºæ ¼       =>  +(urlencode) / %20(rawurlencode)
 *  %    =>  %25
 *  &    =>  %26
 *  \    =>  %5C

@@ -1,17 +1,9 @@
 <?php
-header('content-type:text/html;charset=gbk');
-/*  crypt¼ÓÃÜ         */
+header('content-type:text/html;charset=utf-8');
+/*  cryptæœºå¯†æŠ€æœ¯         */
 $string='PHPerJiang';
-$crypt_value1=crypt($string,'JY');//»ùÓÚ±ê×¼ DES Ëã·¨µÄÉ¢ÁĞÊ¹ÓÃ "./0-9A-Za-z" ×Ö·ûÖĞµÄÁ½¸ö×Ö·û×÷ÎªÑÎÖµ
+$crypt_value1=crypt($string,'JY');//åŸºäºæ ‡å‡†desç®—æ³•çš„æ•£åˆ—å€¼åŠ å¯†â€œ.0-9A-Za-zâ€å­—ç¬¦ä¸­çš„ä¸¤ä¸ªå­—ç¬¦ä½œä¸ºç›å€¼
 echo $crypt_value1.'<hr/>';
-$crypt_value2=crypt($string,'$1$PHPerJiang$');//MD5 É¢ÁĞÊ¹ÓÃÒ»¸öÒÔ $1$ ¿ªÊ¼µÄ 12 ×Ö·ûµÄ×Ö·û´®ÑÎÖµ
+$crypt_value2=crypt($string,'$1$PHPerJiang$');//åŸºäºmd5çš„æ•£åˆ—ç”¨$1 $å¼€å§‹çš„12å­—ç¬¦çš„ç›å€¼ä¸²
 echo $crypt_value2.'<hr/>';
 
-/**
- * ÎªÁË·ÀÖ¹Ê±Ğò¹¥»÷ Í¨³£ÔÙÓÃcrypt¼ÓÃÜµÄÊ±ºò»áÓÃ
- * bool hash_equals ( string $known_string , string $user_string )
- * º¯ÊıÀ´½øĞĞÃÜÂë±È½Ï£¬ÓĞĞ§µÄ·ÀÖ¹Ê±Ğò¹¥»÷
- * 
- * 
- * crypt¼ÓÃÜÓÉºÜ¶àÖÖ£¬ÕâÀïÀı¾ÙÁ½ÖÖ³£¼û·½Ê½£¬¿ÉÒÔÈ¥phpÊÖ²á²éÑ¯
- */

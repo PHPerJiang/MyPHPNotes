@@ -2,13 +2,9 @@
 header('content-type:text/html;charset=gbk');
 
 $string='PHPerJiang';
-$sha1_value1=sha1($string);//·µ»ØÒ»¸ö 40 ×Ö·û³¤¶ÈµÄÊ®Áù½øÖÆÊı×ÖÃÜÎÄ
+$sha1_value1=sha1($string);//è¿”å›40å­—ç¬¦çš„åå…­è¿›åˆ¶å¯†æ–‡
 echo $sha1_value1.'<hr/>';
-$sha1_value2=sha1($string,true);//·µ»ØÒ»¸ö 20 ×Ö·û³¤¶ÈµÄÔ­Ê¼ÃÜÎÄ
+$sha1_value2=sha1($string,true);//è¿”å›20å­—ç¬¦çš„åŸå§‹å¯†æ–‡
 echo $sha1_value2.'<hr/>';
-$sha1_value3=sha1(sha1($string,true));//Ê¹ÓÃsha1¼ÓÃÜÊ±³£¼ûµÄ¼ÓÃÜ·½Ê½
+$sha1_value3=sha1(sha1($string,true));//Sha1ä¹Ÿä¸å®‰å…¨å¸¸ç”¨ sha1(sha1($string,true))åŠ å¯†
 echo $sha1_value3;
-
-/**
-*sha1¼ÓÃÜËã·¨ÒÑ¾­²»°²È«ÁË£¬Èç¹û·ÇÒªÓÃ´ËËã·¨¼ÓÃÜ£¬Ò»¶¨Òª×¢Òâ¾¡Á¿Ôö¼Ó¼ÓÃÜËã·¨µÄ¸´ÔÓ¶È
-*/

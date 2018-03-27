@@ -1,23 +1,23 @@
 <?php 
-header('content-type:text/html;charset=gbk');
+header('content-type:text/html;charset=utf-8');
 $string='PHPerJiang';
 echo $string.'<br/>';
-echo base64_encode($string).'<br/>';//base64¼ÓÃÜ
-echo base64_decode(base64_encode($string)).'<br/><hr/>';//base64½âÃÜ
+echo base64_encode($string).'<br/>';//base64åŠ å¯†
+echo base64_decode(base64_encode($string)).'<br/><hr/>';//base64è§£å¯†
 
 
 echo "<image src='PHPerJiang.jpg' alt=''></image>";
 $filename="PHPerJiang.jpg";
-$data=file_get_contents($filename);//»ñµÃÍ¼Æ¬µÄÄÚÈİ
-$imgDate=base64_encode($data); //°ÑÈÎºÎ¶ş½øÖÆ×Ö·û±àÂëµ½¿É´òÓ¡µÄ64¸ö×Ö·ûÖ®ÖĞ
+$data=file_get_contents($filename);//è·å–å›¾ç‰‡å†…å®¹
+$imgDate=base64_encode($data); //å°†æ‰€æœ‰äºŒè¿›åˆ¶å­—ç¬¦è½¬æ¢ä¸ºå¯æ‰“å°çš„64ä¸ªå­—ç¬¦
 echo '<hr/>';
-echo "<image src='data:;base64,$imgDate' alt=''></image>";//Í¼Æ¬µÄµÄÊä³ö¸ñÊ½ £¬Ö±½ÓÓÃbase64Êä³öÍ¼Æ¬
+echo "<image src='data:;base64,$imgDate' alt=''></image>";//é€šè¿‡baseç æ˜¾ç¤ºå›¾ç‰‡
 echo '<hr/>';
 echo "<image src='data:image/jpeg;base64,$imgDate' alt=''></image>";
 
 /**
- * ĞÅÏ¢¼ÓÃÜ¼¼Êõ£º
- * µ¥ÏîÉ¢ÁĞ¼ÓÃÜ¼¼Êõ     µ¥Ïò²»¿ÉÄæ
- * ¶Ô³Æ¼ÓÃÜ¼¼Êõ             Ë«Ïò¿ÉÄæĞèÒªÃÜÔ¿
- * ·Ç¶Ô³Æ¼ÓÃÜ¼¼Êõ         Ë«Ïò¿ÉÄæĞèÒª¹«Ô¿ºÍË½Ô¿ 
+ * ä¿¡æ¯åŠ å¯†æŠ€æœ¯
+ * å•é¡¹æ•£åˆ—åŠ å¯†æŠ€æœ¯
+ * å¯¹ç§°åŠ å¯†æŠ€æœ¯
+ * éå¯¹ç§°åŠ å¯†æŠ€æœ¯
  */

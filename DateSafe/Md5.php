@@ -2,15 +2,15 @@
 header('content-type:text/html;charset=gbk');
 /* <meta http-equiv="refresh" content="3;URL=res.html">
  *echo '<meta http-equiv="refresh" content="3;URL=res.html">'
- * ¿ÉÒÔÊµÏÖÒ³Ãæ3sºó×Ô¶¯Ìø×ª
+ * é€šè¿‡htmlå¤´å®ç°é¡µé¢åœ¨ä¸‰ç§’é’Ÿåè·³è½¬
  */
 
-/*  md5¼ÓÃÜ    */
+/*  md5åŠ å¯†   */
 $string='PHPerJiang';
-$md5_value1=md5($string);//·µ»Ø32×Ö·û16½øÖÆÊı×ÖĞÎÊ½ÃÜÎÄ
+$md5_value1=md5($string);//MD5ï¼ˆ$stringï¼‰è¿”å›32ä½å­—ç¬¦16è¿›åˆ¶æ•´æ•°çš„å¯†æ–‡
 echo $md5_value1.'<hr/>';
-$md5_value2=md5($string,true);//·µ»Ø16×Ö½Ú³¤¶ÈµÄÔ­Ê¼¶ş½øÖÆ¸ñÊ½ÃÜÎÄ
+$md5_value2=md5($string,true);//Md5($string,true)è¿”å›16å­—èŠ‚çš„åŸå§‹äºŒè¿›åˆ¶å¯†æ–‡
 echo $md5_value2.'<hr/>';
-$md5_value3=md5(md5($string,true));//³£ÓÃMD5¸ß°²È«ĞÔ¼ÓÃÜĞÎÊ½
+$md5_value3=md5(md5($string,true));//å•çº¯ä½¿ç”¨Md5ï¼ˆï¼‰åŠ å¯†å·²ç»ä¸å®‰å…¨äº†ï¼Œå¯ä»¥ä½¿ç”¨MD5(md5($string,true))æ–¹å¼æ¥åŠ å¯†
 echo $md5_value3;
  
