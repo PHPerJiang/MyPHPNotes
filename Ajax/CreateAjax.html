@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>创建XMLHttpReuqest对象初始化</title>
+	<script type="text/javascript" src="Jquery/jquery-1.10.2.js"></script>
+</head>
+<script type="text/javascript">
+	/*实例化xmlhttprequest请求  */
+	var xhr;
+	try{
+		xhr = new XMLHttpRequest;
+	}catch(e){
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	function _get(){
+		var str = $("#mes").val();
+		//创建请求
+		xhr.open("get","Action/CreateAjax.php?time="+new Date().getTime()+"&str="+str,true);
+		//发送请求
+		xhr.send('');
+		//触发事件
+		xhr.onreadystatechange=_back;
+	}
+	function _back(){
+		//请求完成
+		if(xhr.readyState==4){
+			//请求成功
+			if(xhr.status==200){
+				alert(xhr.responseText);
+			}else{
+				alert('请求资源失败');
+			}
+		}
+	}
+</script>
+<body>
+	年龄<input type="text" id="mes" name="mes">
+    	<input type="button" onclick="_get()" value="提交">
+</body>
+</html>
