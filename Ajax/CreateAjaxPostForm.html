@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>post表单</title>
+</head>
+<script type="text/javascript">
+	/*实例化XHR  */
+	var xhr;
+	try{
+		xhr = new XMLHttpRequest();
+	}catch(e){
+		xhr = new ActiveXobject("Microsoft.XMLHTTP");
+	}
+	/*向服务器发送请求  */
+	function _post(name){
+		/* alert(xhr); */
+		xhr.open("post","./Action/CreateAjaxPostForm.php",true);
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		xhr.send("name="+name);
+		xhr.onreadystatechange=_back;
+	}
+	/*回掉函数  */
+	function _back(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var text = document.getElementById("hidenText");
+			var code=xhr.responseText;
+			if(code==0){
+				text.innerHTML="用户名已存在";
+				text.style.color='red';
+				text.style.fontWeight='bold';
+			}else{
+				text.innerHTML="用户名可以使用";
+				text.style.color='green';
+				text.style.fontWeight='bold';
+			}
+		}
+	}
+</script>
+<body>
+	<form action="./Action/CreateAjaxPostForm.php" method="post">
+	<table>
+		<tr>
+			<td>用户名</td>
+			<td><input type="text" name="username" id="" onblur="_post(this.value)"/><span id="hidenText"></span></td>
+		</tr>
+		<tr>
+			<td>密码</td>
+			<td><input type="password" name="password" id="" /></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="提交" /></td>
+		</tr>
+		</table>
+	</form>
+</body>
+</html>
