@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>城市二级联动</title>
+</head>
+<script>
+	/*创建xhr对象  */
+	var xhr;
+	try{
+		xhr = new XMLHttpRequest();
+	}catch(e){
+		xhr = new ActiveXobject("Microsoft.XMLHTTP");		
+	}
+	function _post(province){
+		//创建请求
+		xhr.open("post","./Action/CreateAjaxCity.php",true);
+		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		//发送请求
+		xhr.send('province='+province);
+		//回调函数
+		xhr.onreadystatechange=_back;
+	}
+	/*回掉函数  */
+	function _back(){
+		if(xhr.readyState==4 && xhr.status==200){
+			_clearCache();
+			var citys=xhr.responseText;
+			var cityArr=citys.split(',');
+			var city= document.getElementById('city');
+			for(var i=0;i<cityArr.length;i++){
+				city.options[i]=new Option(cityArr[i],i);
+			}
+		}
+	}
+	/*清除缓存  */
+	function _clearCache(){
+		var city= document.getElementById('city');
+		city.length=0;
+	}
+</script>
+<body>
+	省份<select name="province" id="province" onchange="_post(this.value)">
+		<option value="0">请选择</option>
+		<option value="sd">山东</option>
+		<option value="bj">北京</option>
+	</select>
+	城市<select name="city" id="city"></select>
+	
+</body>
+</html>
