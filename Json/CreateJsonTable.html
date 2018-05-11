@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>使用传来的json格式数据列表</title>
+	<script>
+		var xhr='';
+		try{
+			xhr = new XMLHttpRequest();
+		}catch(e){
+			xhr = new ActiveXObject('Microsoft.XMLHTTP')
+		}
+		function _get(){
+			//发送请求
+			xhr.open('get','./doAction/CreateJsonTable.php',true);
+			//发送数据
+			xhr.send('');
+			//回调
+			xhr.onreadystatechange=_back;
+		}
+		function _back(){
+			if(xhr.readyState ==4 && xhr.status==200){
+				//1创建表格
+				var perTable=document.createElement("table");
+				//设置表格的边框，宽度
+				perTable.setAttribute("border","1");
+				perTable.setAttribute("width","80%");
+				//创建行
+				var Row0=perTable.insertRow(0);
+				//创建第一个单元格
+				var Cell0=Row0.insertCell(0);
+				Cell0.innerHTML="姓名";
+				//创建第二个单元格
+				var Cell1=Row0.insertCell(1);
+				Cell1.innerHTML="性别";
+				//创建第三个单元格
+				var Cell2=Row0.insertCell(2);
+				Cell2.innerHTML="年龄";
+				
+				//获取json格式数据
+				var jsonData=xhr.responseText;
+				//解析json 数据
+				var datas=eval('('+jsonData+')');
+				/*将json数据填充到表格中  */
+				for(var i=0;i<datas.length;i++){
+					data=datas[i];
+					var Row1=perTable.insertRow(i+1);
+					//创建单元格：
+					var Cell1=Row1.insertCell(0);
+					Cell1.innerHTML=data.name;
+					var Cell2=Row1.insertCell(1);
+					Cell2.innerHTML=data.sex;
+					var Cell3=Row1.insertCell(2);
+					Cell3.innerHTML=data.age;
+				}
+				document.body.appendChild(perTable);
+				
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="submit" value="点我显示列表" onclick="_get()"/>
+</body>
+</html>
