@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>js中使用json</title>
+</head>
+<script>
+//json表示单条数据
+/* 	var arr={
+		'name':'PHPerJiang',
+		'sex':'男',
+		'age':'23'
+	};
+	alert(arr['name']); */
+	
+//josn表示数组
+var arr={
+			'PHPerJiang':[
+				{'name':'PHPerJiang','sex':'男','age':'23'},
+				{'name':'CoderJiang','sex':'男','age':'23'},
+				{'name':'JavaerJiang','sex':'男','age':'23'},
+				
+			]};
+	alert(arr['PHPerJiang'][2]['name']);
+	
+/*注意数组中的符号使用和取值时使用的下标  */
+</script>
+<body>
+</body>
+</html>
