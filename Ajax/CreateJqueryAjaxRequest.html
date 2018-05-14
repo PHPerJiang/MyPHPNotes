@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Juery中的ajax请求</title>
+</head>
+<script type="text/javascript" src="Jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("button:eq(0)").click(function(){
+			var url='./Action/CreateJqueryAjaxRequest.php?time='+new Date().getTime();
+			var param={"name":"PHPerJiang","age":"23"};
+			$.get(url,param,function(data){
+				alert(data);
+			});
+		});
+		$("button:eq(1)").click(function(){
+			var url='./json/helloword.json';
+			$.getJSON(url,function(json){
+				alert(json[0].name);
+			});
+		});
+		$("button:eq(2)").click(function(){
+			var url='./js/helloword.js';
+			$.getScript(url);
+		});
+		$("button:eq(3)").click(function(){
+			var url='./Action/CreateJqueryAjaxRequest.php?time='+new Date().getTime();
+			var param={"name":"PHPerJiang","age":"23"};
+			$.post(url,param,function(data){
+				alert(data);
+			});
+		});
+		$("button:eq(4)").click(function(){
+			var url='./helloword.html';
+			$("div").load(url);
+		});
+		
+	});
+</script>
+<body>
+	<button>get</button>
+	<button>getJson</button>
+	<button>getScript</button>
+	<button>post</button>
+	<button>load</button>
+	<div></div>
+</body>
+</html>
