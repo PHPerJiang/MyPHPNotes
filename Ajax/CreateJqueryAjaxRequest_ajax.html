@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>使用jquery的ajax请求</title>
+</head>
+<script type="text/javascript" src="Jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	var param={"name":"姜哈哈","age":"23"};
+	$("button").click(function(){
+		$.ajax({
+			type:"GET",
+			url:"./Action/CreateJqueryAjaxRequest.php",
+			data:param,
+			cache:false,
+			beforeSend:function(){
+				$("img").show();
+			},
+			success:function(data){
+				alert(data);
+			},
+		});
+	});
+});
+</script>
+<body>
+	<button>ajax</button>
+   	<img alt="图片" src="./image/img-1.jpg" style="width: 200px;height:200px;display: none">
+</body>
+</html>
