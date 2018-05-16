@@ -41,6 +41,7 @@
 				var jsonData=xhr.responseText;
 				//解析json 数据
 				var datas=eval('('+jsonData+')');
+				//var datas=JSON.parse(jasonData); //Json.parse安全
 				/*将json数据填充到表格中  */
 				for(var i=0;i<datas.length;i++){
 					data=datas[i];
