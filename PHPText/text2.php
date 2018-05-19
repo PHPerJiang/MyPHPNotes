@@ -1,5 +1,6 @@
 <?php
 /*用三种方式遍历数组  */
+
 $arr1=['PHPerJiang',23,'男'];
 $arr2=[
     'name'=>'PHPerJiang',
@@ -10,6 +11,7 @@ print_r($arr1);
 echo '<hr>';
 print_r($arr2);
 echo '<hr>';
+
 /*for循环遍历   只能遍历索引数组*/
 for($i=0;$i<count($arr1);$i++){
     echo $arr1[$i]."<br/>";
@@ -20,6 +22,7 @@ foreach ($arr2 as $key => $value){
     echo "$key : $value <br/>";
 }
 echo '<hr>';
+
 /*while list each 组合遍历数组  */
 // var_dump(each($arr2));
 while(list($key,$value) = each($arr2)){
