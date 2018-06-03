@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>模拟秒杀抢购</title>
+</head>
+<script type="text/javascript" src="../../Ajax/Jquery/jquery-1.10.2.js"></script>
+<body>
+<script>
+	$(function(){
+		$("input").click(function(){
+			$("#text").show();
+			var url ='action/order2list.php?time='+new Date().getTime()+'&code=1';
+			var data={};
+			var success = function(res){
+				$("#text").val(res.mes);
+			}
+			$.ajax({
+				url:url,
+				data:data,
+				success:success,
+				dataType:'json',
+				type:'get',
+			});
+		});
+	});
+</script>
+</body>
+	<div align="center">
+		<p>模拟10件商品100人秒杀</p>
+		<input type="button" value="秒杀" />
+		<br/>
+		<textarea name="text" id="text" cols="30" rows="10" style="display:none"></textarea>
+	</div>
+</html>
