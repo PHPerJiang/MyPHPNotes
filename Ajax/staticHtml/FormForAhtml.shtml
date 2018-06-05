@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>动态页面静态化</title>
+</head>
+<script type="text/javascript" src="../Jquery/jquery-1.10.2.js"></script>
+<body>
+<!--这是静态页面局部动态页面  -->
+	<div>
+		静态页面页面静态数据&nbsp;：&nbsp;&nbsp;&nbsp;<textarea name="staticPage" id="staticPage" cols="30" rows="10">这是静态数据</textarea>
+		<br/>
+		静态页面页面动态数据&nbsp;：&nbsp;&nbsp;&nbsp;<textarea name="activePage" id="activePage" cols="30" rows="10"></textarea>
+	</div>
+</body>
+<script>
+	$(function(){
+		var url='../Action/FromForAhtml.php'
+		var data={};
+		var success=function(res){
+			if(res.code==1){
+				$("#activePage").html(res.data);
+			}else{
+				//todo
+			}
+		}
+		$.ajax({
+			url:url,
+			data:data,
+			success:success,
+			dataType:'json',
+			type:'get',
+		});
+	});
+</script>
+</html>
