@@ -12,3 +12,4 @@ $redis->set('var',4);               //存值
 $redis->incr('var',2);              //自增2
 $val=$redis->get('var');            //读值
 var_dump($val);
+
