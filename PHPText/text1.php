@@ -6,4 +6,4 @@ echo $url.'<br/>';
 $b=parse_url($url);
 print_r($b);
 echo '<br/>'.substr($b['path'], strpos($b['path'], '.'),4);
-echo '<br/>'.substr(end(explode('.',$b['path'])),0,3);
+echo '<br/>'.@substr(end(explode('.',$b['path'])),0,3);
