@@ -1,12 +1,12 @@
 <?php
 class MyRedis{
-    //¾ä±ú
+    //ç§æœ‰å¥æŸ„
     private static $handler;
-    //Ë½ÓĞ¹¹Ôì·½·¨£¬·ÀÖ¹Ê¹ÓÃnewÀ´ÊµÀı»¯
+    //ç§æœ‰æ„é€ æ–¹æ³•é˜²æ­¢é€šè¿‡new æ–¹æ³•å®ä¾‹åŒ–
     private function __construct(){
         
     }
-    //µ¥ÀıÄ£Ê½»ñÈ¡ÊµÀı
+    //é™æ€æ–¹æ³•è·å–å®ä¾‹
     public static function getInstance(){
         if(!self::$handler){
             self::$handler = new Redis();
@@ -14,18 +14,21 @@ class MyRedis{
         }
         return self::$handler;
     }
-    //»ñµÃredisÖµ
+    //æŒ‰é”®åè·å–rediså€¼Öµ
     public static function get($key){
         $value = self::$handler -> get($key);
-        //·´ĞòÁĞ»¯Öµ£¬ÊÇÓÃÀ´´æ´¢Êı×é¶ÔÏóµÄÊı¾İ
+        //è·å–å€¼åååºåˆ—åŒ–
         $value_serl = @unserialize($value);
+        //åˆ¤æ–­ååºåˆ—åŒ–åæ˜¯å¦æ˜¯æ•°ç»„æˆ–è€…å¯¹è±¡ï¼Œå¦‚æœæ˜¯åˆ™è¿”å›ååºåˆ—åŒ–åçš„ç»“æœ
         if(is_object($value_serl)||is_array($value_serl)){
             return $value_serl;
         }
+        //å¦‚æœä¸æ˜¯åˆ™ç›´æ¥è¿”å›å€¼
         return $value;
     }
-    //Ïòredis´æÊı¾İ key-value-time£¬ÆäÖĞtimeÎª¹ıÆÚÊ±¼ä
+    //æŒ‰é”®å€¼çš„æ–¹å¼å‘redisä¸­å­˜æ•°æ®ï¼Œå¹¶è®¾ç½®è¿‡æœŸæ—¶é—´
     public static function set($key ,$value ,$time=0){
+        //åˆ¤æ–­å€¼æ˜¯å¦æ˜¯å¯¹è±¡æˆ–æ•°ç»„ï¼Œå¦‚æœæ˜¯åˆ™åºåˆ—åŒ–åå†å­˜å…¥redis
         if(is_object($value)||is_array($value)){
             $value = serialize($value);
         }
@@ -36,7 +39,7 @@ class MyRedis{
         }
         
     }
-    //·ÀÖ¹¶ÔÏó±»clone
+    //ç§æœ‰æ–¹æ³•ï¼Œé˜²æ­¢cloneå¯¹è±¡
     private function __clone(){
         return false;
     }
