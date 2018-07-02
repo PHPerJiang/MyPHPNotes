@@ -22,7 +22,7 @@ echo $output;
 
 /*第二种方式使用配置写入文件  */
 // $ch=curl_init('http://www.baidu.com/');
-// $fp=fopen('baidu.html', 'w');
+// $fp=fopen('CurlExample01.html', 'w');
 // curl_setopt($ch, CURLOPT_FILE, $fp);
 // curl_setopt($ch, CURLOPT_HEADER, 0);
 // curl_exec($ch);
