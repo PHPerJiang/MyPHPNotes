@@ -17,6 +17,6 @@ class MyDebug{
         $func($var);
         echo '</pre>';
         if($exit)
-        exit;
+            exit;
     }
 }
