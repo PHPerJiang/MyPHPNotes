@@ -38,6 +38,17 @@ echo file_get_contents('./test.txt');
 echo '<br/>'.file_get_contents('./test.txt',null,null,3,9);
 echo '<hr />';
 
+//将文件读入数组
+var_dump(file('./test.txt'));
+
+//获取文件创建访问和修改时间
+echo '上次访问文件时间：'.fileatime('./test.txt');
+echo '<br />文件创建时间：'.filectime('./test.txt');
+echo '<br />文件修改时间：'.filemtime('./test.txt');
+echo '<hr />';
+
+
+
 
 
 
