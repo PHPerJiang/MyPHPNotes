@@ -9,14 +9,14 @@ sort($arr);
 var_dump($arr);
 
 function BinSearch2($arr,$low,$len, $search){
-   if($low<=$len){
+    if($low<=$len){
         $bin=floor(($low+$len)/2);
         if($search == $arr[$bin]){
-           return "查找到元素$search,元素下标为,$bin";
+            return "查找到元素$search,元素下标为,$bin";
         }elseif ($search > $arr[$bin]){
-           return  BinSearch2($arr, $bin+1, $len, $search);
+            return  BinSearch2($arr, $bin+1, $len, $search);
         }elseif ($search < $arr[$bin]){
-           return  BinSearch2($arr, $low, $bin-1, $search);
+            return  BinSearch2($arr, $low, $bin-1, $search);
         }
     }
     return '未查询到';
