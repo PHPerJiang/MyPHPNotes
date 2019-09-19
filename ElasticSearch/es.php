@@ -181,4 +181,88 @@ class Es extends CI_Controller{
 		$client = ClientBuilder::create()->build();
 		var_dump($client->indices()->putMapping($params));
 	}
+
+	//批量新增文档
+	public function bulk_create(){
+		$params = [];
+		for ($i =1; $i<=10;$i++){
+			$params['body'][] = [
+				'create' => [
+					'_index' => 'person',
+					'_type'  => 'doc',
+					'_id'     => $i
+				]
+			];
+			$params['body'][] = [
+				'name' => 'PHPerJiang'.$i,
+				'age'  => $i,
+				'sex'  => $i%2,
+			];
+		}
+		$client = ClientBuilder::create()->build();
+		var_dump($client->bulk($params));
+	}
+
+	//批量修改文档
+	public function bulk_update(){
+		$params = [];
+		for ($i =1; $i<=10;$i++){
+			$params['body'][] = [
+				'update' => [
+					'_index' => 'person',
+					'_type'  => 'doc',
+					'_id'     => $i
+				]
+			];
+			$params['body'][] = [
+				'doc' => [
+					'name' => 'PHPerJiang'.($i+10),
+					'age'  => $i+10,
+					'sex'  => $i,
+				]
+			];
+		}
+		$client = ClientBuilder::create()->build();
+		var_dump($client->bulk($params));
+	}
+
+	//批量删除
+	public function bulk_delete(){
+		$params = [];
+		for ($i =1; $i<=10;$i++){
+			$params['body'][] = [
+				'delete' => [
+					'_index' => 'person',
+					'_type'  => 'doc',
+					'_id'     => $i
+				]
+			];
+		}
+		$client = ClientBuilder::create()->build();
+		var_dump($client->bulk($params));
+	}
+
+	//批量创建文档
+	public function bulk_create_another(){
+		$params = [
+			'index' => 'person',
+			'type'  => 'doc',
+			'body'  => [],
+		];
+
+		for ($i =1; $i<=10;$i++){
+			$params['body'][] = [
+				'index' => [
+					'_id' => $i,
+				]
+			];
+			$params['body'][] = [
+				'name' => 'PHPerJiang'.$i,
+				'age'  => $i,
+				'sex'  => $i%2,
+			];
+		}
+		$client = ClientBuilder::create()->build();
+		var_dump($client->bulk($params));
+	}
 }
