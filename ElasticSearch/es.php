@@ -14,7 +14,7 @@ class Es extends CI_Controller{
 			'index' => 'my_index',
 			'type' => 'my_type',
 			'id' => 'my_id',
-			'body' => ['testField' => 'abc']
+			'body' => ['name' => '11']
 		];
 		$client = ClientBuilder::create()->build();
 		$response = $client->index($params);
@@ -252,7 +252,7 @@ class Es extends CI_Controller{
 
 		for ($i =1; $i<=10;$i++){
 			$params['body'][] = [
-				'index' => [
+				'create' => [    //index 与 create一致都是创建文档
 					'_id' => $i,
 				]
 			];
@@ -264,5 +264,141 @@ class Es extends CI_Controller{
 		}
 		$client = ClientBuilder::create()->build();
 		var_dump($client->bulk($params));
+	}
+
+	//批量更新
+	public function bulk_update_another(){
+		$params = [
+			'index' => 'person',
+			'type'  => 'doc',
+			'body'  => []
+		];
+		for($i = 1; $i <= 10; $i++){
+			$params['body'][] = [
+				'update' => [
+					'_id' => $i
+				]
+			];
+			$params['body'][] = [
+				'doc' => [
+					'name' => 'PHPerJiang'.$i*2,
+					'age'  => $i*3,
+					'sex'  => $i%2,
+				]
+			];
+		}
+		$client = ClientBuilder::create()->build();
+		var_dump($client->bulk($params));
+	}
+
+	//批量删除
+	public function bluk_delete_another(){
+		$params = [
+			'index' => 'person',
+			'type'  => 'doc',
+			'body'  => [],
+		];
+		for ($i = 1; $i <= 10; $i++){
+			$params['body'][] = [
+				'delete' => [
+					'_id' => $i,
+				]
+			];
+		}
+		$client = ClientBuilder::create()->build();
+		var_dump($client->bulk($params));
+	}
+
+	//部分更改doc,若 body 参数中指定一个 doc 参数。这样 doc 参数内的字段会与现存字段进行合并。
+	public function update_doc(){
+		$params = [
+			'index' => 'person',
+			'type'  => 'doc',
+			'id'    => 2,
+			'body'  => [
+				'doc' => [
+					'bbb' => '3'
+				]
+			]
+		];
+		$client = ClientBuilder::create()->build();
+		var_dump($client->update($params));
+	}
+
+	//使用脚本更新数据
+	public function update_doc_by_script(){
+		$params = [
+			'index' => 'person',
+			'type'  => 'doc',
+			'id'    => 2,
+			'body'  => [
+				'script' => [
+					'lang' => 'painless',
+					'source' => 'ctx._source.age += params.count',
+					'params' => ['count' => 1],
+				]
+			]
+		];
+		$client = ClientBuilder::create()->build();
+		var_dump($client->update($params));
+	}
+
+	//脚本修改数据，并给数据默认值
+	public function update_doc_by_script_and_def()
+	{
+		$params = [
+			'index' => 'person',
+			'type' => 'doc',
+			'id' => 8,
+			'body' => [
+				'script' => [
+					'lang' => 'painless',
+					'source' => "ctx._source.age1 = (ctx._source.age1 ?: 2) + params.count",
+					'params' => [
+						'count' => 5,
+					],
+				],
+			],
+		];
+		$client = ClientBuilder ::create() -> build();
+		var_dump($client -> update($params));
+	}
+
+	//复杂查询并打分
+	public function search_complex(){
+		//方式一
+		$params = [
+			'index' => 'person',
+			'type'  => 'doc',
+			'body'  => [
+				'query' => [
+					'bool' => [
+						'filter' => [
+							'term' => ['age1' => 22]
+						],
+						'must' => [
+							'match_all' => new stdClass()
+						]
+					],
+				],
+			],
+		];
+		//方式二
+		$params = [
+			'index' => 'person',
+			'type'  => 'doc',
+			'body'  => [
+				'query' => [
+					'constant_score' => [
+						'boost' => 2, //加权值
+						'filter' => [
+							'term' => ['age1' => 22]
+						],
+					],
+				],
+			],
+		];
+		$client = ClientBuilder ::create() -> build();
+		echo json_encode($client -> search($params));
 	}
 }
