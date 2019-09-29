@@ -582,5 +582,105 @@ class Es extends CI_Controller{
 		echo json_encode($response);
 	}
 
+	//聚合中加过滤
+	function agg_search_filter(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'func_score',
+			'type'  => 'doc',
+			'size'  => 0,
+			'body'  => [
+				'aggs' => [
+					'agg_filter' => [
+						'filter' => ['term' => ['test' => "aaaaa"]],
+						'aggs'    => ['terms' => ['terms' => ['field' => 'popularity']]]
+					]
+				],
+			]
+		];
+		$response = $client->search($params);
+		echo json_encode($response);
+	}
 
+	//多桶聚合，每个桶关联一个筛选项
+	function agg_multi_search_filter(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'func_score',
+			'type'  => 'doc',
+			'size'  => 0,
+			'body'  => [
+				'aggs' => [
+					'multi_aggs' => [
+						'filters' => [
+							'other_bucket_key' => "other_bucket",
+							'filters' => [
+								'popularity13' => ['term' => ['popularity' => 13]],
+								'popularity22' => ['term' => ['popularity' => 22]],
+							]
+						]
+					]
+				],
+			]
+		];
+		$response = $client->search($params);
+		echo json_encode($response);
+	}
+
+	//嵌套对象索引创建
+	function nested_mapping_create(){
+		$client = ClientBuilder ::create() -> build();
+		$mappings = [
+			'properties' => [
+				'user' => [
+					'type' => 'nested',
+					'properties' => [
+						'name' => ['type' => 'keyword'],
+						'age'  => ['type' => 'integer']
+					]
+				]
+			]
+		];
+		$params = [
+			'index' => 'user',
+			'body'  => [
+				'doc' => $mappings,
+			]
+		];
+		var_dump($client->indices()->create($params));
+	}
+
+	//嵌套对象文档创建
+	function nseted_doc_create(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'user',
+			'type'  => 'doc',
+			'id'    => 5,
+			'body'  => [
+				'user' => ['name' => 'Pythoner','age' => 30]
+			]
+		];
+		var_dump($client->create($params));
+	}
+
+	//嵌套文档搜索
+	function nested_doc_search(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'user',
+			'type'  => 'doc',
+			'body'  => [
+				'query' => [
+					'nested' => [
+						'path' => 'user',
+						'query' => [
+							'term' => ['user.name'=>'PHPer']
+						]
+					]
+				]
+			]
+		];
+		echo json_encode($client->search($params));
+	}
 }

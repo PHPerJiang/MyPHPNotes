@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c190ea4c-0a56-423c-9a01-642c6ddb1fc1" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ElasticSearch/es.php" beforeDir="false" afterPath="$PROJECT_DIR$/ElasticSearch/es.php" afterDir="false" />
-    </list>
+    <list default="true" id="c190ea4c-0a56-423c-9a01-642c6ddb1fc1" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +26,8 @@
       <file leaf-file-name="es.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ElasticSearch/es.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="618">
-              <caret line="403" column="1" selection-start-line="403" selection-start-column="1" selection-end-line="403" selection-end-column="1" />
+            <state relative-caret-position="188">
+              <caret line="558" column="45" lean-forward="true" selection-start-line="558" selection-start-column="45" selection-end-line="558" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -146,17 +143,18 @@
       <workItem from="1568708061360" duration="441000" />
       <workItem from="1568874881013" duration="611000" />
       <workItem from="1568964969585" duration="8000" />
+      <workItem from="1569296764885" duration="659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58738000" />
+    <option name="totallyTimeSpent" value="59397000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35091147" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28072917" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -185,6 +183,23 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Arithmetic/BinSearch2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+          <folding>
+            <element signature="e#6#65#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ElasticSearch/es.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11284">
+          <caret line="403" column="1" selection-start-line="403" selection-start-column="1" selection-end-line="403" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Arithmetic/BinSearch2.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
@@ -443,8 +458,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ElasticSearch/es.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="403" column="1" selection-start-line="403" selection-start-column="1" selection-end-line="403" selection-end-column="1" />
+        <state relative-caret-position="188">
+          <caret line="558" column="45" lean-forward="true" selection-start-line="558" selection-start-column="45" selection-end-line="558" selection-end-column="45" />
         </state>
       </provider>
     </entry>
