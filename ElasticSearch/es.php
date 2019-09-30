@@ -656,9 +656,12 @@ class Es extends CI_Controller{
 		$params = [
 			'index' => 'user',
 			'type'  => 'doc',
-			'id'    => 5,
+			'id'    => 6,
 			'body'  => [
-				'user' => ['name' => 'Pythoner','age' => 30]
+				'user' => [
+					['name' => 'Pythoner','age' => 30],
+					['name' => 'Javaer','age' => 20],
+				]
 			]
 		];
 		var_dump($client->create($params));
@@ -677,6 +680,123 @@ class Es extends CI_Controller{
 						'query' => [
 							'term' => ['user.name'=>'PHPer']
 						]
+					]
+				]
+			]
+		];
+		echo json_encode($client->search($params));
+	}
+
+	//基本过滤 es5.0之后取消了filtered方式
+	function base_filter(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'func_score',
+			'type'  => 'doc',
+			'body'  => [
+				'query' => [
+					'bool' => [
+						'filter' => [
+							'bool' => [
+								'must' => [
+									['terms' => ['test' => ["aaaaa",'hahah']]],
+									['term' => ['popularity' => 13]],
+								]
+							]
+						],
+					]
+				]
+			]
+		];
+		echo json_encode($client->search($params));
+	}
+
+	//基本查询,且查询，多个查询一起
+	function base_search(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'func_score',
+			'type'  => 'doc',
+			'body'  => [
+				'query' => [
+					'bool' => [
+						'must' => [
+							['term' => ['test' => 'asdaa']],
+							['term' => ['popularity' => 22]],
+						],
+					],
+				]
+			]
+		];
+		echo json_encode($client->search($params));
+	}
+
+	//查询加过滤
+	function base_search_filter(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'func_score',
+			'type'  => 'doc',
+			'version' => true,
+			'body'  => [
+				'query' => [
+					'bool' => [
+						'must_not' => [
+							['term' => ['test' => 'asdaa']],
+							['term' => ['popularity' => 22]],
+						],
+						'filter'  => [
+							'term' => ['test' => 'aaaaa']
+						]
+					],
+				]
+			]
+		];
+		echo json_encode($client->search($params));
+	}
+
+	//排序
+	function sort_search(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'func_score',
+			'type'  => 'doc',
+			'body'  => [
+				'sort' => [
+					'popularity' => ['order' => 'desc']
+				]
+			]
+		];
+		echo json_encode($client->search($params));
+	}
+
+	//范围查询
+	function range_search(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'func_score',
+			'type'  => 'doc',
+			'body'  => [
+				'query' => [
+					'range' => [
+						'popularity' => ['gt' => 0,'lt' => 30]
+					]
+				]
+			]
+		];
+		echo json_encode($client->search($params));
+	}
+
+	//非空过滤
+	function exists_filter(){
+		$client = ClientBuilder ::create() -> build();
+		$params = [
+			'index' => 'func_score',
+			'type'  => 'doc',
+			'body'  => [
+				'query' => [
+					'bool' => [
+						'filter' => ['exists' => ['field' => 'popularity']]
 					]
 				]
 			]
